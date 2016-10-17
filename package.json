@@ -1,0 +1,25 @@
+{
+  "name": "beertube",
+  "version": "1.0.0",
+  "description": "Videos sharing application.",
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server ./src -p 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arshavindn/beertube.git"
+  },
+  "author": "mozart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arshavindn/beertube/issues"
+  },
+  "homepage": "https://github.com/arshavindn/beertube",
+  "private": true,
+  "devDependencies": {
+    "bower": "*",
+    "http-server": "*"
+  }
+}
