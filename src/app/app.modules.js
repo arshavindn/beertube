@@ -3,5 +3,7 @@ var beertube = angular.module("beertube", [
   "ngResource",
   "ngAnimate",
   "ngSanitize",
-  "beertube.home"
+  "beertube.home",
+  "loginController",
+  "loginService"
 ]);
