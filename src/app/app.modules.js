@@ -5,6 +5,7 @@ angular.module('beertube', [
   'ngResource',
   'ngAnimate',
   'ngSanitize',
+  'ngCookies',
   'beertube.home',
   'beertube.login'
 ]);
