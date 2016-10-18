@@ -1,1 +1,1 @@
-angular.module('beertube.login', []);
+angular.module('beertube.login', ['ui.bootstrap']);
