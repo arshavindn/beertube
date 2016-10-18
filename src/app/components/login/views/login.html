@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="LoginController">
+<div class="container-fluid" ng-controller="LoginCtrl">
   <!--navigation-->
   <div class="row">
     <nav class="navbar navbar-default">
@@ -14,7 +14,7 @@
                 <span class="glyphicon glyphicon-pencil"></span> Register
               </a>
             </li>
-            <li ng-show="userStatus !== 'login'">
+            <li ng-show="userStatus !== 'loggedin'">
               <a href="#/login">
                 <span class="glyphicon glyphicon-log-in"></span> Login
               </a>

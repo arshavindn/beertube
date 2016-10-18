@@ -1,7 +1,4 @@
-angular.module('beertube', [
-	'ngRoute',
-	'loginController',
-	'loginService'])
+angular.module('beertube')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -9,6 +6,6 @@ angular.module('beertube', [
       })
       .when('/login', {
       	templateUrl: 'app/components/login/views/login.html',
-      	controller: 'LoginController'
+      	controller: 'LoginCtrl'
       });
   }]);
