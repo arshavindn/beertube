@@ -1,3 +1,9 @@
-<p>
-  there is nothing here for you
-</p>
+<ng-include src="'partials/_nav_bar.html'" onload="" autoscroll=""></ng-include>
+
+<div class="container">
+  <div class="row">
+    <section class="posts col-md-8" ng-controller="HomeCtrl">
+      <ng-include src="'app/components/home/views/_post.html'" onload="" autoscroll=""></ng-include>
+    </section>
+  </div>
+</div>

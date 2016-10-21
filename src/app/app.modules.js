@@ -8,5 +8,6 @@ angular.module('beertube', [
   'ngCookies',
   'ui.bootstrap',
   'beertube.home',
-  'beertube.login'
+  'beertube.login',
+  'beertube.video'
 ]);

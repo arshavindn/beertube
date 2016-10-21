@@ -2,6 +2,7 @@ angular.module('beertube')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
+        controller: 'HomeCtrl',
         templateUrl: 'app/components/home/views/home.html',
       })
       .when('/login', {
