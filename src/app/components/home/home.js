@@ -1,1 +1,1 @@
-angular.module('beertube.home', []);
+angular.module('beertube.home', ['infinite-scroll']);

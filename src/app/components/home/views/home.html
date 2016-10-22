@@ -1,9 +1,13 @@
 <ng-include src="'partials/_nav_bar.html'" onload="" autoscroll=""></ng-include>
 <ng-include src="'app/components/home/views/_post_board.html'" onload="" autoscroll=""></ng-include>
-<div class="container">
+<div class="container" ng-controller="HomeCtrl">
   <div class="row">
-    <section class="posts col-md-8" ng-controller="HomeCtrl">
-      <ng-include src="'app/components/home/views/_post.html'" onload="" autoscroll=""></ng-include>
+    <section class="posts col-md-8">
+      <ng-include src="'app/components/home/views/_posts.html'" onload="" autoscroll=""></ng-include>
     </section>
+  </div>
+  <div class="" style="text-align: center;">
+    <h1 ng-show="noMorePost">There is no post remaining.</h1>
+    <a href="#/?page={{page + 1}}" class="btn btn-default btn-primary" ng-show="pageFull">I want more posts!</a>
   </div>
 </div>
