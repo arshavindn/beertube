@@ -1,7 +1,33 @@
+.board {
+  padding: 0;
+  margin-bottom: 30px;
+  .post {
+    &:first-child {
+      width: 50%;
+      .title {
+        font-size: 36px
+      }
+    }
+    border-bottom: 1px solid black;
+    width: 25%;
+    position: relative;
+    padding: 0;
+    .title {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+
 article.post {
   padding-bottom: 30px;
   .title a {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
   }
 }
