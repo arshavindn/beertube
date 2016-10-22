@@ -1,6 +1,7 @@
 <div class="board container-fluid">
-  <div class="post col-md-4" ng-repeat="post in mostViewedPosts">
-    <a href="#/videos/{{post.id}}"><img src="{{post.thumbnails.mq}}" alt="" /></a>
-    <p class="title">{{post.title}}</p>
+  <div class="post col-md-4 col-xs-6" ng-repeat="post in mostViewedPosts">
+    <a href="#/watch/{{post.id}}"><div class="overlay"></div></a>
+    <img src="{{post.thumbnails.mq}}" alt="" />
+    <a href="#/watch/{{post.id}}" class="title">{{post.title}}</a>
   </div>
 </div>
