@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Videos sharing application.",
   "scripts": {
-    "postinstall": "npm install && bower install",
+    "postinstall": "bower install",
     "build:css": "node-sass --output-style compressed -o src/assets/stylesheets/ src/assets/stylesheets/scss/",
     "serve": "browser-sync start --server ./src --port 5000 --files 'src/assets/stylesheets/scss/*.scss, src/app/**/*.js, src/app/**/*.html'",
     "watch:css": "onchange 'src/assets/stylesheets/scss/*.scss' -- npm run build:css",
     "watch:all": "parallelshell 'npm run serve' 'npm run watch:css'",
+    "prestart": "npm install",
     "start": "npm run watch:all"
   },
   "repository": {
