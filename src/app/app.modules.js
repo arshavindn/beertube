@@ -11,5 +11,6 @@ angular.module('beertube', [
   'beertube.navbar',
   'beertube.login',
   'beertube.register',
+  'beertube.profile',
   'beertube.video'
 ]);

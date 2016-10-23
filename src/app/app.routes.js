@@ -12,5 +12,9 @@ angular.module('beertube')
       .when('/register', {
         templateUrl: 'app/components/register/views/register.html',
         controller: 'RegisterCtrl'
+      })
+      .when('/user/:userId/profile', {
+        templateUrl: 'app/components/profile/views/profile.html',
+        controller: 'ProfileCtrl'
       });
   }]);
