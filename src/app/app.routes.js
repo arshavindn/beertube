@@ -8,5 +8,9 @@ angular.module('beertube')
       .when('/login', {
       	templateUrl: 'app/components/login/views/login.html',
       	controller: 'LoginCtrl'
+      })
+      .when('/register', {
+        templateUrl: 'app/components/register/views/register.html',
+        controller: 'RegisterCtrl'
       });
   }]);
