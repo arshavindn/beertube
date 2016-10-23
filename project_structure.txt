@@ -1,0 +1,14 @@
+--app
+   |--components
+   |  |--home
+   |  |--watch
+   |  |--post
+   |  |--login
+   |  |--regist
+   |  |--navbar
+   |
+   |--shared
+      |--video
+      |--user  # regist: create user
+      |--session # login: create session, logout: delete session
+
