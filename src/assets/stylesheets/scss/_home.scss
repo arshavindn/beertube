@@ -36,6 +36,11 @@
         font-size: 24px;
       }
     }
+    @media screen and (max-width: 650px) {
+      &:not(:first-child) .title {
+        font-size: 14px;
+      }
+    }
   }
 }
 
