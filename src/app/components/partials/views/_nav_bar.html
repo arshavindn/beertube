@@ -39,19 +39,18 @@
         </li>
         <!-- When user login -->
         <li ng-show="userStatus === 'login'">
-          <a href="#/user/{{userId}}">
-            <span class="glyphicon glyphicon-user"></span> {{userName}}
-          </a>
-        </li>
-        <li ng-show="userStatus === 'login'">
           <a href="#/upload">
-            <button class="btn btn-danger btn-md">Upload Video</button>
+            <button class="btn btn-primary btn-sm">Upload Video</button>
           </a>
         </li>
-        <li ng-show="userStatus === 'login'">
-          <a>
-            <button ng-click="logout()" class="btn btn-primary btn-sm">Logout</button>
-          </a>
+        <li class="dropdown" ng-show="userStatus === 'login'">
+          <a class="dropdown-toggle" href="#/user/{{userId}}"> <span class="glyphicon glyphicon-user"></span> {{userName}} <span class="caret"></span></a>
+          <div class="dropdown-content">
+            <a href="#/user/{{userId}}/playlist">My Favorite Video</a>
+            <a href="#/user/{{userId}}/profile">Edit Profile</a>
+            <a href="#/user/{{userId}}/password">Change Password</a>
+            <a> <button ng-click="logout()" class="btn btn-danger btn-sm">Logout</button> </a>
+          </div>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
