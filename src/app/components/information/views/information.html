@@ -6,9 +6,15 @@
 
   <div class="col-sm-4">
     <div class="userInformation">
-      <div>Your Name: {{name}}</div>
-      <div>Number Of Video Uploaded: {{numOfVideo}}</div>
-      <div>Number Of Favorite Video: {{numOfFV}}</div>
+      <div class="avatar row">
+        <img src="{{avatarUrl}}">
+        <div class="name"><h3>{{name}}</h3></div>
+      </div>
+      <div class="stt">
+        <div>Day Join: {{dayJoin}}</div> 
+        <div>Number Of Video Uploaded: {{numOfVideo}}</div>
+        <div>Number Of Favorite Video: {{numOfFV}}</div>
+      </div>
     </div>
   </div>
 </div>
