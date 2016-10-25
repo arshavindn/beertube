@@ -21,6 +21,14 @@ angular.module('beertube')
         templateUrl: 'app/components/password/views/password.html',
         controller: 'PasswordCtrl'
       })
+      .when('/user/:userId/favorite', {
+        templateUrl: 'app/components/favorite/views/favorite.html',
+        controller: 'FavoriteCtrl'
+      })
+      .when('/user/:userId', {
+        templateUrl: 'app/components/information/views/information.html',
+        controller: 'InformationCtrl'
+      })
       .when('/upload', {
         templateUrl: 'app/components/upload/views/upload.html',
         controller: 'UploadCtrl'
