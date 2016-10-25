@@ -12,5 +12,6 @@ angular.module('beertube', [
   'beertube.login',
   'beertube.register',
   'beertube.profile',
+  'beertube.password',
   'beertube.video'
 ]);

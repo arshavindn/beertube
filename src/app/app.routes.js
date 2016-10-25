@@ -16,5 +16,9 @@ angular.module('beertube')
       .when('/user/:userId/profile', {
         templateUrl: 'app/components/profile/views/profile.html',
         controller: 'ProfileCtrl'
+      })
+      .when('/user/:userId/password', {
+        templateUrl: 'app/components/password/views/password.html',
+        controller: 'PasswordCtrl'
       });
   }]);
