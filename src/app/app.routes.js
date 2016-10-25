@@ -20,5 +20,9 @@ angular.module('beertube')
       .when('/user/:userId/password', {
         templateUrl: 'app/components/password/views/password.html',
         controller: 'PasswordCtrl'
+      })
+      .when('/upload', {
+        templateUrl: 'app/components/upload/views/upload.html',
+        controller: 'UploadCtrl'
       });
   }]);

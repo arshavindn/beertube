@@ -13,5 +13,7 @@ angular.module('beertube', [
   'beertube.register',
   'beertube.profile',
   'beertube.password',
-  'beertube.video'
+  'beertube.upload',
+  'beertube.video',
+  'videoFilter'
 ]);
