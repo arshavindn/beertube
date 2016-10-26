@@ -1,8 +1,8 @@
 <ng-include src="'app/components/partials/views/_nav_bar.html'" onload="" autoscroll=""></ng-include>
 <div class="container-fluid" ng-controller="RegisterCtrl">
   <div class="row">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4">
+    <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
       <form role="form" name="registerForm">
         <h3>Register</h3>
         <div class="form-group">
@@ -24,6 +24,6 @@
         <button ng-disabled="registerForm.$pristine || registerForm.$dirty && registerForm.$invalid " class="btn btn-primary" ng-click="createUser()">Create</button>
       </form>
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4"></div>
   </div>
 </div>
