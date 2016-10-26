@@ -9,7 +9,7 @@
     "watch:css": "onchange 'src/assets/stylesheets/scss/*.scss' -- npm run build:css",
     "watch:all": "parallelshell 'npm run serve' 'npm run watch:css'",
     "prestart": "npm install",
-    "start": "npm run watch:all"
+    "start": "npm run build:css && npm run watch:all"
   },
   "repository": {
     "type": "git",
