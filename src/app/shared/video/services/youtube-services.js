@@ -1,4 +1,5 @@
-angular.module('beertube.video').service('YoutubeServices', function() {
+angular.module('beertube.video').service('YoutubeServices',
+    ['$window', '$rootScope', '$log', function ($window, $rootScope, $log) {
   service = this;
 
   youtube = {
@@ -20,6 +21,27 @@ angular.module('beertube.video').service('YoutubeServices', function() {
     $rootScope.$apply();
   };
 
+  function onYoutubeReady (event) {
+    $log.info('YouTube Player is ready');
+    // youtube.player.cueVideoById('Div0iP65aZo');
+    // youtube.videoId = history[0].id;
+    // youtube.videoTitle = history[0].title;
+  }
+
+  function onYoutubeStateChange (event) {
+    if (event.data == YT.PlayerState.PLAYING) {
+      youtube.state = 'playing';
+    } else if (event.data == YT.PlayerState.PAUSED) {
+      youtube.state = 'paused';
+    } else if (event.data == YT.PlayerState.ENDED) {
+      youtube.state = 'ended';
+      // service.launchPlayer(upcoming[0].id, upcoming[0].title);
+      // service.archiveVideo(upcoming[0].id, upcoming[0].title);
+      // service.deleteVideo(upcoming, upcoming[0].id);
+    }
+    $rootScope.$apply();
+  }
+
   this.bindPlayer = function (elementId) {
     $log.info('Binding to ' + elementId);
     youtube.playerId = elementId;
@@ -31,6 +53,7 @@ angular.module('beertube.video').service('YoutubeServices', function() {
     return new YT.Player(youtube.playerId, {
       height: youtube.playerHeight,
       width: youtube.playerWidth,
+      videoId: youtube.videoId,
       playerVars: {
         rel: 0,
         showinfo: 0
@@ -61,4 +84,4 @@ angular.module('beertube.video').service('YoutubeServices', function() {
   this.getYoutube = function () {
     return youtube;
   };
-});
+}]);

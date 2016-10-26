@@ -10,6 +10,10 @@ angular.module('beertube')
       	controller: 'LoginCtrl'
       })
       .when('/watch/:videoId', {
-        templateUrl: 'app/components/watch/views/watch.html'
+        templateUrl: 'app/components/watch/views/watch.html',
+        controller: 'WatchCtrl'
       });
-  }]);
+  }])
+  .config( function ($httpProvider) {
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  });
