@@ -8,6 +8,20 @@ angular.module('beertube.video').service('Video', function() {
     return all_videos_sorted.slice(0, limit);
   };
 
+  video.findById = function (videoId) {
+    return {
+      id: 1,
+      videoId: 'Div0iP65aZo',
+      title: "Hugh Jackman Is Back To Begin His Final Journey As Old Wolverine In The First \"Logan\" Trailer",
+      description: "It doesn't look like a super hero movie at all. It's all about Logan's story.",
+      url: "https://youtu.be/Div0iP65aZo",
+      thumbnails: {hq: "https://i.ytimg.com/vi/Div0iP65aZo/hqdefault.jpg",
+                   mq: "https://i.ytimg.com/vi/Div0iP65aZo/mqdefault.jpg"},
+      view: 6268517,
+      point: 12356,
+    };
+  };
+
   video.all = function() {
     return [
       {

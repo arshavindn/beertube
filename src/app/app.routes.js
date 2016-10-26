@@ -8,5 +8,8 @@ angular.module('beertube')
       .when('/login', {
       	templateUrl: 'app/components/login/views/login.html',
       	controller: 'LoginCtrl'
+      })
+      .when('/watch/:videoId', {
+        templateUrl: 'app/components/watch/views/watch.html'
       });
   }]);
