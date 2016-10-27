@@ -1,0 +1,11 @@
+.board.youtube {
+  background-color: black;
+}
+
+.playlist {
+  height: 480px;
+  .list {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}

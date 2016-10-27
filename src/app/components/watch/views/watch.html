@@ -1,8 +1,30 @@
-<div ng-controller="WatchCtrl">
-  <div ng-click="youtube.player.stopVideo()">
-    <div id="player">
-      <div id="placeholder" style="width: 100%"></div>
+<div class="board youtube container-fluid" ng-controller="WatchCtrl">
+  <div class="container">
+    <div class="col-md-8">
+      <div ng-click="youtube.player.stopVideo()">
+        <div id="player">
+          <div id="placeholder" style="width: 100%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 playlist">
+      <div class="list">
+        <div class="" style="height:100px; width:100%; background-color:red;">
+
+        </div>
+        <div class="" style="height:100px; width:100%; background-color:red;">
+
+        </div>
+        <div class="" style="height:100px; width:100%; background-color:red;">
+
+        </div>
+        <div class="" style="height:100px; width:100%; background-color:red;">
+
+        </div>
+        <div class="" style="height:100px; width:100%; background-color:red;">
+
+        </div>
+      </div>
     </div>
   </div>
-  <button type="button" name="button" ng-click="launch('Div0iP65aZo', 'Bla')">launchPlayer</button>
-</div
+</div>
