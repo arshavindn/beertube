@@ -10,16 +10,28 @@ angular.module('beertube.video').factory('Video', function (VideoService) {
   }
 
   Video.find = function (id) {
-    var videoJSON = VideoService.find(id);
-    return new Video(videoJSON);
+    return Video.allInHash()[id];
   };
 
   Video.all = function () {
     var allVideosInJSON = VideoService.all();
-    var videos = [];
-    angular.forEach(allVideosInJSON, function (videoJSON) {
-      videos.push(new Video(videoJSON));
+    return allVideosInJSON.map(function (videoJSON) {
+      return new Video(videoJSON);
     });
+  };
+
+  Video.allInHash = function () {
+    var allVideosInJSON = VideoService.all();
+    var hash = {};
+    allVideosInJSON.forEach(function (videoJSON) {
+      hash[videoJSON.id] = new Video(videoJSON);
+    });
+    return hash;
+  };
+
+  Video.mostViewed = function () {
+    var videos = VideoService.mostViewed();
+    return videos.map(function(videoData) { return new Video(videoData); });
   };
 
   Video.prototype.update = function (videoData) {
@@ -32,8 +44,9 @@ angular.module('beertube.video').factory('Video', function (VideoService) {
     var types = ['0', '1', '2', '3', 'default', 'hqdefault', 'mqdefault',
                  'maxresdefault'];
     var thumbnails = {};
-    angular.forEach(types, function(type) {
-      thumbnails[type] = base + this.videoId + '/' + type + extension;
+    var videoId = this.videoId;
+    types.forEach(function(type) {
+      thumbnails[type] = base + videoId + '/' + type + extension;
     });
     return thumbnails;
   };

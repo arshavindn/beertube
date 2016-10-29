@@ -15,9 +15,6 @@ angular.module('beertube.watch').controller('WatchCtrl',
       else {
         YoutubeService.loadPlayer();
       }
-
-      allVideos = Video.all();
-
     }
 
     function loadIframe() {
