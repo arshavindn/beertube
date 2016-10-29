@@ -9,7 +9,7 @@ angular.module('beertube')
       	templateUrl: 'app/components/login/views/login.html',
       	controller: 'LoginCtrl'
       })
-      .when('/watch/:videoId', {
+      .when('/watch/:id', {
         templateUrl: 'app/components/watch/views/watch.html',
         controller: 'WatchCtrl'
       });

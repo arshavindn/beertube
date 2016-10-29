@@ -1,19 +1,34 @@
-angular.module('beertube.watch').controller('WatchCtrl', function ($scope, $http, $log, YoutubeServices) {
+angular.module('beertube.watch').controller('WatchCtrl',
+  function ($scope, $routeParams, $log, $http, YoutubeService, Video) {
 
-  init();
+    init();
 
-  function init() {
-    $scope.youtube  = YoutubeServices.getYoutube();
-    $scope.youtube.videoId = 'Div0iP65aZo'
-    $scope.playlist = true;
-  }
+    function init() {
+      $scope.youtube  = YoutubeService.getYoutube();
+      $scope.playlist = true;
+      $scope.video = Video.find($routeParams.id);
+      $scope.youtube.videoId = $scope.video.videoId;
 
-  // $scope.$on('$viewContentLoaded', function() {
-  //   $scope.launch('Div0iP65aZo', 'Bla');
-  // });
+      if (!$scope.youtube.ready) {
+        loadIframe();
+      }
+      else {
+        YoutubeService.loadPlayer();
+      }
 
-  $scope.launch = function (id, title) {
-    YoutubeServices.launchPlayer(id, title);
-    $log.info('Launched id:' + id + ' and title:' + title);
-  };
+      allVideos = Video.all();
+
+    }
+
+    function loadIframe() {
+      var tag = document.createElement('script');
+      tag.src = "http://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    $scope.launch = function (videoId, title) {
+      YoutubeService.launchPlayer(videoId, title);
+      $log.info('Launched videoId:' + videoId + ' and title:' + title);
+    };
 });

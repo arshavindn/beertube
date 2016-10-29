@@ -1,31 +1,20 @@
-angular.module('beertube.video').service('YoutubeServices',
+angular.module('beertube.video').service('YoutubeService',
     ['$window', '$rootScope', '$log', function ($window, $rootScope, $log) {
-  service = this;
+  var service = this;
 
-  youtube = {
+  var youtube = {
     ready: false,
     player: null,
     playerId: null,
     videoId: null,
     videoTitle: null,
-    playerHeight: '480',
-    playerWidth: '640',
+    playerHeight: '100%',
+    playerWidth: '100%',
     state: 'stopped'
-  };
-
-  $window.onYouTubeIframeAPIReady = function () {
-    $log.info('Youtube API is ready');
-    youtube.ready = true;
-    service.bindPlayer('placeholder');
-    service.loadPlayer();
-    $rootScope.$apply();
   };
 
   function onYoutubeReady (event) {
     $log.info('YouTube Player is ready');
-    // youtube.player.cueVideoById('Div0iP65aZo');
-    // youtube.videoId = history[0].id;
-    // youtube.videoTitle = history[0].title;
   }
 
   function onYoutubeStateChange (event) {
@@ -35,12 +24,17 @@ angular.module('beertube.video').service('YoutubeServices',
       youtube.state = 'paused';
     } else if (event.data == YT.PlayerState.ENDED) {
       youtube.state = 'ended';
-      // service.launchPlayer(upcoming[0].id, upcoming[0].title);
-      // service.archiveVideo(upcoming[0].id, upcoming[0].title);
-      // service.deleteVideo(upcoming, upcoming[0].id);
     }
     $rootScope.$apply();
   }
+
+  $window.onYouTubeIframeAPIReady = function () {
+    $log.info('Youtube API is ready');
+    youtube.ready = true;
+    service.bindPlayer('placeholder');
+    service.loadPlayer();
+    $rootScope.$apply();
+  };
 
   this.bindPlayer = function (elementId) {
     $log.info('Binding to ' + elementId);

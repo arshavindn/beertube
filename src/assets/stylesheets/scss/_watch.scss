@@ -1,11 +1,49 @@
 .board.youtube {
   background-color: black;
+  .container {
+    padding: 10px 0;
+  }
+  @media screen and (max-width: 991px) {
+    .playlist {
+      display: none;
+    }
+  }
+}
+
+.responsivewrapper {
+  width: 100%;
+  padding-bottom: 56.25%;
+  position: relative;
+  > .holder {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.playlist .responsivewrapper {
+  padding-bottom: 130.666667%;
+  @media screen and (max-width: 1199px) {
+    padding-bottom: 135%;
+  }
+}
+
+.btn-container {
+  padding-top: 15px;
 }
 
 .playlist {
-  height: 480px;
+  // height: 480px;
   .list {
     height: 100%;
     overflow-y: scroll;
+  }
+}
+
+.btn-left {
+  .btn-group {
+    padding-left: 15px;
   }
 }
