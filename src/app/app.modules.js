@@ -13,4 +13,8 @@ angular.module('beertube', [
   'beertube.watch'
 ]);
 
-angular.module('beertube').constant('BASE_URL', 'https://youtube.com/');
+angular.module('beertube').constant('youtubeAPI', {
+  URL: 'https://www.googleapis.com/youtube/v3/videos',
+  KEY: 'AIzaSyAcSQzuOGWIxeyak4v2YYX4vZS4h-_K6KM',
+  PART: ['contentDetails', 'statistics']
+});

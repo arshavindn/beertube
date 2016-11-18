@@ -7,6 +7,10 @@ angular.module('beertube.watch').controller('WatchCtrl',
       $scope.youtube  = YoutubeService.getYoutube();
       $scope.playlist = true;
       $scope.video = Video.find($routeParams.id);
+      $scope.video.videoData().then(function (data) {
+        $log.info(data);
+        $scope.video.duration = data.contentDetails.duration;
+      });
       $scope.youtube.videoId = $scope.video.videoId;
 
       if (!$scope.youtube.ready) {

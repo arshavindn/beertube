@@ -7,6 +7,7 @@ angular.module('beertube.video').factory('Video', function (VideoService) {
     this.point       = videoJSON.point;
     this.view        = videoJSON.view;
     this.thumbnails  = this.genThumbnails();
+    this.duration    = null;
   }
 
   Video.find = function (id) {
@@ -36,6 +37,10 @@ angular.module('beertube.video').factory('Video', function (VideoService) {
 
   Video.prototype.update = function (videoData) {
 
+  };
+
+  Video.prototype.videoData = function () {
+    return VideoService.videoData(this.videoId);
   };
 
   Video.prototype.genThumbnails = function () {
