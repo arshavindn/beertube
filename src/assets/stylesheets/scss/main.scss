@@ -1,5 +1,8 @@
+body { padding-bottom: 80px; }
 
-img { width: 100%;}
+img { width: 100%; }
+
+a:hover { text-decoration: none; }
 
 @import "home";
 @import "nav_bar";
