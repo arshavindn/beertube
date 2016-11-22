@@ -2,9 +2,6 @@
 
 angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$window', '$cookies', 'login',
   function ($scope, $window, $cookies, login) {
-    $scope.userStatus = $cookies.get('userStatus');
-    $scope.userName = $cookies.get('userName');
-    $scope.userId = $cookies.get('userId');
     $scope.user = {
         userEmail: '',
         userPassword: ''
@@ -15,10 +12,11 @@ angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$window', '
         if (user.userId === 0) {
             $scope.user.userEmail = '';
             $scope.user.userPassword = '';
+            window.alert("Incorrect Email or Password");
         } else {
             $cookies.put('userId', user.userId);
             $cookies.put('userName', user.userName);
-            $cookies.put('userStatus', 'loggedin');
+            $cookies.put('userStatus', 'login');
             $window.history.back();  // come back url page
         }
       }, function (response) {

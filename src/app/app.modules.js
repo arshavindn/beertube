@@ -9,8 +9,17 @@ angular.module('beertube', [
   'ui.bootstrap',
   'beertube.video',
   'beertube.home',
+  'beertube.navbar',
   'beertube.login',
-  'beertube.watch'
+  'beertube.watch',
+  'beertube.register',
+  'beertube.profile',
+  'beertube.password',
+  'beertube.favorite',
+  'beertube.information',
+  'beertube.upload',
+  'beertube.video',
+  'videoFilter'
 ]);
 
 angular.module('beertube').constant('youtubeAPI', {
