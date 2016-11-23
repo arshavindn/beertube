@@ -19,7 +19,8 @@ angular.module('beertube', [
   'beertube.information',
   'beertube.upload',
   'beertube.video',
-  'videoFilter'
+  'videoFilter',
+  'userService'
 ]);
 
 angular.module('beertube').constant('youtubeAPI', {

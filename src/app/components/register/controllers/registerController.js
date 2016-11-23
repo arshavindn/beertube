@@ -1,27 +1,31 @@
 'use strict';
 
-angular.module('beertube.register').controller('RegisterCtrl', ['$scope', '$location', 'register', '$cookies',
-  function ($scope, $location, register, $cookies) {
+angular.module('beertube.register').controller('RegisterCtrl', ['$scope', '$location', 'register',
+  function ($scope, $location, register) {
     $scope.user = {
-      userEmail: '',
-      userName: '',
-      userPassword: '',
+      email: '',
+      fullName: '',
+      password: '',
     };
     $scope.userPasswordConfirm = '';
+    
+    $scope.duplicatePassword = true;
+    $scope.duplicateEmail = true;
+  
     $scope.createUser = function () {
-      if ($scope.user.userPassword === $scope.userPasswordConfirm) {
+      if ($scope.user.password === $scope.userPasswordConfirm) {
       	register.createUser($scope.user).then(function (response) {
-      	var user = response.data;
-	      $cookies.put('userId', user.userId);
-	      $cookies.put('userName', user.userName);
-	      $cookies.put('userStatus', 'login');
-	      $location.path('/');
+	      $location.path('/login');
 	    }, function (response) {
-	      alert('something wrong');
+	      $scope.duplicateEmail = false;
+        $scope.user.password = '';
+        $scope.userPasswordConfirm = '';
 	    });
       }
       else {
-        alert('Password was wrong');
+        $scope.duplicatePassword = false;
+        $scope.user.password = '';
+        $scope.userPasswordConfirm = '';
       }
       
     };

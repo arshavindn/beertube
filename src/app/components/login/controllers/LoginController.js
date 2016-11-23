@@ -1,26 +1,27 @@
 'use strict';
 
-angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$window', '$cookies', 'login',
-  function ($scope, $window, $cookies, login) {
+angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$route', '$window', '$cookies', 'login', 'User',
+  function ($scope, $route, $window, $cookies, login, User) {
     $scope.user = {
-        userEmail: '',
-        userPassword: ''
+        email: '',
+        password: ''
     };
+    $scope.failLogin = true;
     $scope.login = function () {
       login.loginUser($scope.user).then(function (response) {
-        var user = response.data;
-        if (user.userId === 0) {
-            $scope.user.userEmail = '';
-            $scope.user.userPassword = '';
-            window.alert("Incorrect Email or Password");
-        } else {
-            $cookies.put('userId', user.userId);
-            $cookies.put('userName', user.userName);
-            $cookies.put('userStatus', 'login');
-            $window.history.back();  // come back url page
-        }
+        var data = response.data;
+        $cookies.put('user_token', data.token);
+
+        User.getUserInfo().then(function (response) {
+          var userInfo = JSON.stringify(response.data);
+          $cookies.put('user_info', userInfo);
+          $window.history.back();
+        }, function (response) {
+          // Do nothing
+        });
       }, function (response) {
-        alert('something wrong');
+        $scope.failLogin = false;
+        $scope.user.password = '';
       });
     };
   }]);
