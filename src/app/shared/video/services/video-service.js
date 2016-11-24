@@ -14,7 +14,7 @@ angular.module('beertube.video').service('VideoService',
 
     };
 
-    service.videoData = function (videoId) {
+    service.videoYoutubeData = function (videoId) {
       var defer = $q.defer();
       var part = youtubeAPI.PART.join(',');
       $http.get(youtubeAPI.URL, {

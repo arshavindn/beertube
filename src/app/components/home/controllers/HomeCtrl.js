@@ -9,7 +9,6 @@ angular.module('beertube.home').controller('HomeCtrl',
     $scope.allPosts = Video.all().slice(startIndex,
                                         startIndex + $scope.loadLimit);
     $scope.mostViewedPosts = Video.mostViewed();
-
     $scope.loadMore = function() {
       currentNumberOfPosts = $scope.allPosts.length;
       if (currentNumberOfPosts > 0) {

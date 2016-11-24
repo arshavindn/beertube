@@ -35,12 +35,30 @@ angular.module('beertube.video').factory('Video', function (VideoService) {
     return videos.map(function(videoData) { return new Video(videoData); });
   };
 
+  Video.limitedPlaylistIncludes = function (id) {
+    var allVideos = Video.allInHash();
+    ids = Object.keys(allVideos);
+    index = ids.indexOf(id);
+    limitedIds = ids.slice(index - 10 > 0 ? index - 10 : 0,
+                           index + 10 < ids.length ? index + 10 : ids.length)
+    return _.pick(allVideos, limitedIds);
+  }
+
   Video.prototype.update = function (videoData) {
 
   };
 
-  Video.prototype.videoData = function () {
-    return VideoService.videoData(this.videoId);
+  Video.prototype.videoYoutubeData = function () {
+    return VideoService.videoYoutubeData(this.videoId);
+  };
+
+  Video.prototype.setDuration = function (ptDuration) {
+    secs = moment.duration(ptDuration).asSeconds();
+    if (secs < 60) {
+      this.duration = moment.duration(secs, 'seconds').format('mm:ss', {trim: false});
+    } else {
+      this.duration = moment.duration(secs, 'seconds').format('d[d] h:mm:ss');
+    };
   };
 
   Video.prototype.genThumbnails = function () {

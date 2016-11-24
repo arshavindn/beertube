@@ -63,6 +63,7 @@ angular.module('beertube.video').service('YoutubeService',
     if (youtube.ready && youtube.playerId) {
       if (youtube.player) {
         youtube.player.destroy();
+        console.log('eeee');
       }
       youtube.player = service.createPlayer();
     }

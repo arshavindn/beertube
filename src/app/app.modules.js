@@ -7,6 +7,8 @@ angular.module('beertube', [
   'ngSanitize',
   'ngCookies',
   'ui.bootstrap',
+  'underscore',
+  'beertube.common',
   'beertube.video',
   'beertube.home',
   'beertube.login',

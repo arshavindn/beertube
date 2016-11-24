@@ -4,6 +4,23 @@ img { width: 100%; }
 
 a:hover { text-decoration: none; }
 
+.board {
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.overlay {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 @import "home";
 @import "nav_bar";
 @import "watch"
