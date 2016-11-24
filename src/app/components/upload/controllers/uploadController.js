@@ -7,7 +7,8 @@ angular.module('beertube.upload').controller('UploadCtrl', ['$scope', 'upload',
       category: {categoryId: ""},
       videoUrl: "",
       description: "",
-      videoImage: ""
+      videoImage: "",
+      videoCode: ""
     }
     $scope.fVideo = true;
     $scope.sVideo = true;
@@ -25,6 +26,7 @@ angular.module('beertube.upload').controller('UploadCtrl', ['$scope', 'upload',
     });
     $scope.viewDemo = function () {
       var str = $scope.videoLink.split("watch?v=");
+      $scope.video.videoCode = str[1];
       $scope.video.videoUrl = "https://www.youtube.com/embed/" + str[1];
       $scope.video.videoImage = "http://img.youtube.com/vi/" + str[1] + "/mqdefault.jpg";
     }

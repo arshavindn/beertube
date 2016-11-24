@@ -33,11 +33,12 @@
         <div class="form-group">
           <input type="text" class="form-control" name="videoUrl" ng-model="video.videoUrl" ng-show=false>
           <input type="text" class="form-control" name="videoImageUrl" ng-model="video.videoImage" ng-show=false>
+          <input type="text" class="form-control" name="videoCode" ng-model="video.videoCode" ng-show=false>
         </div>
       </form>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6">
-      <h2 style="color:#286090">View Demo</h2>
+      <h2 style="color:#286090">Preview</h2>
       <div>
         <iframe width="100%" height="380" ng-src="{{video.videoUrl | trusted}}" frameborder="0" allowfullscreen></iframe>
       </div>
