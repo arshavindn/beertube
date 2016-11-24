@@ -20,3 +20,6 @@ angular.module('beertube').constant('youtubeAPI', {
   KEY: 'AIzaSyAcSQzuOGWIxeyak4v2YYX4vZS4h-_K6KM',
   PART: ['contentDetails', 'statistics']
 });
+angular.module('beertube').constant('beertubeAPI', {
+  URL: 'http://videoservice-dinhphan.rhcloud.com'
+});

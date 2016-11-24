@@ -1,5 +1,5 @@
 angular.module('beertube.video').service('VideoService',
-  function($q, $http, $log, youtubeAPI) {
+  function($q, $http, $log, youtubeAPI, beertubeAPI) {
 
     var service = this;
     service.mostViewed = function (limit) {
@@ -27,7 +27,12 @@ angular.module('beertube.video').service('VideoService',
     };
 
     service.all = function() {
-      return fakedVideos;
+      var defer = $q.defer();
+      $http.get(beertubeAPI.URL + '/videos').then(
+        function (response) { defer.resolve(response.data.data); },
+        function () { defer.reject(response); }
+      );
+      return defer.promise;
     };
 
     var fakedVideos = generateVideos(100);

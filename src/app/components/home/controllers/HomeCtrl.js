@@ -6,9 +6,16 @@ angular.module('beertube.home').controller('HomeCtrl',
     $scope.loadLimit = 7;
     $scope.pageLimit = 20;
     startIndex = ($scope.page - 1) * $scope.pageLimit;
-    $scope.allPosts = Video.all().slice(startIndex,
-                                        startIndex + $scope.loadLimit);
-    $scope.mostViewedPosts = Video.mostViewed();
+    $scope.allPosts = [];
+    $scope.mostViewedPosts = [];
+    Video.all().then(function(response) {
+      $scope.allPosts = response.slice(startIndex,
+                                       startIndex + $scope.loadLimit);
+    });
+    $scope.mostViewedPosts = [];
+    Video.mostViewed().then(function(response) {
+      $scope.mostViewedPosts = response;
+    });
     $scope.loadMore = function() {
       currentNumberOfPosts = $scope.allPosts.length;
       if (currentNumberOfPosts > 0) {
@@ -20,10 +27,11 @@ angular.module('beertube.home').controller('HomeCtrl',
         else {
           numberOfNeededPosts = $scope.loadLimit;
         }
-        morePosts = Video.all().slice(currentNumberOfPosts,
-                                      currentNumberOfPosts + numberOfNeededPosts);
-
-        $scope.allPosts = $scope.allPosts.concat(morePosts);
+        Video.all().then(function(response, currentNumberOfPosts, numberOfNeededPosts) {
+          morePosts = response.slice(currentNumberOfPosts,
+                                     currentNumberOfPosts + numberOfNeededPosts);
+          $scope.allPosts = $scope.allPosts.concat(morePosts);
+        });
       }
     };
 

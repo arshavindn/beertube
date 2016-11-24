@@ -1,47 +1,55 @@
 angular.module('beertube.video').factory('Video', function (VideoService) {
   function Video(videoJSON) {
-    this.id          = videoJSON.id;
-    this.videoId     = videoJSON.videoId;
-    this.title       = videoJSON.title;
+    this.id          = videoJSON.videoId;
+    this.videoId     = videoJSON.videoCode;
+    this.title       = videoJSON.videoName;
     this.description = videoJSON.description;
     this.point       = videoJSON.point;
-    this.view        = videoJSON.view;
+    this.view        = videoJSON.numberOfView;
     this.thumbnails  = this.genThumbnails();
     this.duration    = null;
   }
 
   Video.find = function (id) {
-    return Video.allInHash()[id];
+    return Video.allInHash().then(function(videos) {
+      return videos[id];
+    });
   };
 
   Video.all = function () {
-    var allVideosInJSON = VideoService.all();
-    return allVideosInJSON.map(function (videoJSON) {
-      return new Video(videoJSON);
+    return VideoService.all().then(function(response) {
+      return response.map(function (videoJSON) {
+        return new Video(videoJSON);
+      });
     });
   };
+
+  Video.mostViewed = function (limit) {
+    return Video.all().then(function (response, limit) {
+      return response.sort(function(video1, video2) {
+        return video1.view - video2.view;
+      }).slice(0, limit);
+    });
+  }
 
   Video.allInHash = function () {
-    var allVideosInJSON = VideoService.all();
-    var hash = {};
-    allVideosInJSON.forEach(function (videoJSON) {
-      hash[videoJSON.id] = new Video(videoJSON);
+    return Video.all().then(function(response) {
+      var hash = {};
+      response.forEach(function (video) {
+        hash[video.id] = video;
+      });
+      return hash;
     });
-    return hash;
-  };
-
-  Video.mostViewed = function () {
-    var videos = VideoService.mostViewed();
-    return videos.map(function(videoData) { return new Video(videoData); });
   };
 
   Video.limitedPlaylistIncludes = function (id) {
-    var allVideos = Video.allInHash();
-    ids = Object.keys(allVideos);
-    index = ids.indexOf(id);
-    limitedIds = ids.slice(index - 10 > 0 ? index - 10 : 0,
-                           index + 10 < ids.length ? index + 10 : ids.length)
-    return _.pick(allVideos, limitedIds);
+    return Video.allInHash().then(function (allVideos) {
+      ids = Object.keys(allVideos);
+      index = ids.indexOf(id);
+      limitedIds = ids.slice(index - 10 > 0 ? index - 10 : 0,
+                             index + 10 < ids.length ? index + 10 : ids.length)
+      return _.pick(allVideos, limitedIds);
+    });
   }
 
   Video.prototype.update = function (videoData) {
