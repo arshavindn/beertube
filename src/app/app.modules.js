@@ -19,6 +19,7 @@ angular.module('beertube', [
   'beertube.information',
   'beertube.upload',
   'beertube.video',
+  'beertube.videoUpdate',
   'videoFilter',
   'userService'
 ]);

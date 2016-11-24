@@ -13,6 +13,10 @@ angular.module('beertube')
         templateUrl: 'app/components/watch/views/watch.html',
         controller: 'WatchCtrl'
       })
+      .when('/video/:videoId/edit', {
+        templateUrl: 'app/components/videoUpdate/views/videoUpdate.html',
+        controller: 'VideoUpdateCtrl'
+      })
       .when('/register', {
         templateUrl: 'app/components/register/views/register.html',
         controller: 'RegisterCtrl'

@@ -28,7 +28,6 @@ angular.module('beertube.information').controller('InformationCtrl', ['$scope', 
     if ($cookies.get('user_info') != null) {
       userInfo = JSON.parse($cookies.get('user_info'));
     }
-    console.log(userInfo);
     if ($routeParams.userId == userInfo.userId) {
       $scope.btnAccess = true;
     }
