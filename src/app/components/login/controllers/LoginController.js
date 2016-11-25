@@ -13,7 +13,6 @@ angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$route', '$
         $cookies.put('user_token', data.token);
 
         User.getUserInfo().then(function (response) {
-          console.log(response.data);
           var userInfo = JSON.stringify(response.data);
           $cookies.put('user_info', userInfo);
           $window.history.back();

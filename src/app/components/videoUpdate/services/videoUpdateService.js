@@ -11,6 +11,7 @@ angular.module('beertube.videoUpdate').service('videoUpdate', ['$http', '$cookie
 
     this.updateVideo = function(video, video_id) {
       var token = $cookies.get('user_token');
+      console.log(token);
       var config = {
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
