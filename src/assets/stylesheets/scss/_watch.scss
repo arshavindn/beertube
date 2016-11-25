@@ -96,3 +96,19 @@
     color: rgb(59, 59, 59)
   }
 }
+
+.post-comment,
+.comments {
+  .row {
+    margin: 10px 0;
+  }
+  .col-md-2 {
+    width: 12%;
+    img {
+      margin-left: 0 !important;
+    }
+  }
+  .comment-container {
+    padding: 0 !important;
+  }
+}

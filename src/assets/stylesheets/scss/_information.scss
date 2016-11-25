@@ -1,0 +1,25 @@
+.userInformation{
+  background-color: #DEDEDE;
+  margin: 20px;
+  padding: 10px 15px 5px;
+  display: block;
+  border-radius: 25px;
+}
+.avatar img {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-left: 10px;
+}
+.avatar .name {
+  margin-left: 80px;
+}
+.avatar {
+  display: block;
+}
+.stt {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5em;
+}

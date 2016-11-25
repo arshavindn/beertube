@@ -1,28 +1,28 @@
 'use strict';
 
-angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$window', '$cookies', 'login',
-  function ($scope, $window, $cookies, login) {
-    $scope.userStatus = $cookies.get('userStatus');
-    $scope.userName = $cookies.get('userName');
-    $scope.userId = $cookies.get('userId');
+angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$route', '$window', '$cookies', 'login', 'User',
+  function ($scope, $route, $window, $cookies, login, User) {
     $scope.user = {
-        userEmail: '',
-        userPassword: ''
+        email: '',
+        password: ''
     };
+    $scope.failLogin = true;
     $scope.login = function () {
       login.loginUser($scope.user).then(function (response) {
-        var user = response.data;
-        if (user.userId === 0) {
-            $scope.user.userEmail = '';
-            $scope.user.userPassword = '';
-        } else {
-            $cookies.put('userId', user.userId);
-            $cookies.put('userName', user.userName);
-            $cookies.put('userStatus', 'loggedin');
-            $window.history.back();  // come back url page
-        }
+        var data = response.data;
+        $cookies.put('user_token', data.token);
+
+        User.getUserInfo().then(function (response) {
+          console.log(response.data);
+          var userInfo = JSON.stringify(response.data);
+          $cookies.put('user_info', userInfo);
+          $window.history.back();
+        }, function (response) {
+          // Do nothing
+        });
       }, function (response) {
-        alert('something wrong');
+        $scope.failLogin = false;
+        $scope.user.password = '';
       });
     };
   }]);

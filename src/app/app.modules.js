@@ -9,10 +9,22 @@ angular.module('beertube', [
   'ui.bootstrap',
   'underscore',
   'beertube.common',
+  'beertube.user',
   'beertube.video',
+  'beertube.comment',
   'beertube.home',
+  'beertube.navbar',
   'beertube.login',
-  'beertube.watch'
+  'beertube.watch',
+  'beertube.register',
+  'beertube.profile',
+  'beertube.password',
+  'beertube.favorite',
+  'beertube.information',
+  'beertube.upload',
+  'beertube.video',
+  'beertube.videoUpdate',
+  'videoFilter',
 ]);
 
 angular.module('beertube').constant('youtubeAPI', {

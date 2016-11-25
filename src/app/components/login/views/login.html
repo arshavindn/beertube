@@ -1,46 +1,24 @@
+<ng-include src="'app/components/partials/views/_nav_bar.html'" onload="" autoscroll=""></ng-include>
 <div class="container-fluid" ng-controller="LoginCtrl">
-  <!--navigation-->
   <div class="row">
-    <nav class="navbar navbar-default">
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#/home">Video Social</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <!-- When user not login -->
-          <ul class="nav navbar-nav navbar-right">
-            <li ng-show="userStatus !=='login'">
-              <a href="#/register">
-                <span class="glyphicon glyphicon-pencil"></span> Register
-              </a>
-            </li>
-            <li ng-show="userStatus !== 'loggedin'">
-              <a href="#/login">
-                <span class="glyphicon glyphicon-log-in"></span> Login
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <!--end navigation-->
-  <div class="row">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4">
+    <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
       <form role="form" name="registerForm">
         <h3>Login</h3>
+        <div class="form-group alert alert-danger" ng-hide="failLogin">
+          Incorrect Email or Password. Please try again!
+        </div>
         <div class="form-group">
           <label>Email address:<span class="required">**</span></label>
-          <input type="email" class="form-control" name="userEmail" ng-model="user.userEmail" required>
+          <input type="email" class="form-control" name="userEmail" ng-model="user.email" required>
         </div>
         <div class="form-group">
           <label>Password:<span class="required">**</span></label>
-          <input type="password" class="form-control" name="userPassword" ng-model="user.userPassword" required>
+          <input type="password" class="form-control" name="password" ng-model="user.password" required>
         </div>
         <button ng-disabled="registerForm.$pristine || registerForm.$dirty && registerForm.$invalid " class="btn btn-success" ng-click="login()">Login</button>
       </form>
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4"></div>
   </div>
 </div>
