@@ -42,16 +42,28 @@
       </div>
       <div class="row follow_info">
         <div class="col-md-6">
-          <a href="#" ng-click="listAllFollowing()"> {{numOfFollowing}} following </a>
+          <a style="cursor: pointer;" ng-click="listAllFollowing()"> {{numOfFollowing}} following </a>
         </div>
         <div class="col-md-6">
-          <a href="#" ng-click="listAllFolowers()"> {{numOfFollowers}} followers </a>
+          <a style="cursor: pointer;" ng-click="listAllFollowers()"> {{numOfFollowers}} followers </a>
         </div>
       </div>
 
-      <div class="listUserFollow">
+      <div class="listUserFollow" ng-show="listUserFollowing">
         <div ng-repeat="following in all_following">
+          <hr>
+          <img src="assets/images/noavatar.jpg" ng-if="following.avatarUrl==null">
+          <img src="{{following.avatarUrl}}" ng-if="following.avatarUrl!=null">
           <a href="#/user/{{following.userId}}"> {{following.fullName}} </a>
+        </div>
+      </div>
+
+      <div class="listUserFollow" ng-show="listUserFollower">
+        <div ng-repeat="follower in all_followers">
+          <hr>
+          <img src="assets/images/noavatar.jpg" ng-if="follower.avatarUrl==null">
+          <img src="{{follower.avatarUrl}}" ng-if="follower.avatarUrl!=null">
+          <a href="#/user/{{follower.userId}}"> {{follower.fullName}} </a>
         </div>
       </div>
 

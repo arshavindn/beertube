@@ -12,10 +12,24 @@ angular.module('beertube.information').controller('InformationCtrl', ['$scope', 
     // Default value
     $scope.videos = [];
     $scope.btnAccess = false;
+    $scope.listUserFollowing = false;
+    $scope.listUserFollower = false;
     information.isFollowing($routeParams.userId).then(function(response){
       var isFollow = response.data.follow;
-      $scope.followBtn = !isFollow;
-      $scope.unfollowBtn = isFollow;
+      if ($cookies.get('user_info') == null) {
+        var current_user = null;
+      }
+      else {
+        var current_user = JSON.parse($cookies.get('user_info'));
+      }
+      if (current_user == null || current_user.userId == $routeParams.userId) {
+        $scope.followBtn = false;
+        $scope.unfollowBtn = false;
+      }
+      else {
+        $scope.followBtn = !isFollow;
+        $scope.unfollowBtn = isFollow;
+      }  
     }, function(response){
       console.log('fail to connect');
     });
@@ -86,6 +100,18 @@ angular.module('beertube.information').controller('InformationCtrl', ['$scope', 
       }, function(response){
         console.log('fail unfollow');
       });
+    };
+
+    // Show list all following
+    $scope.listAllFollowing = function () {
+      $scope.listUserFollowing = true;
+      $scope.listUserFollower = false;
+    };
+
+    // Show list all followers
+    $scope.listAllFollowers = function () {
+      $scope.listUserFollower = true;
+      $scope.listUserFollowing = false;
     }
 
   }]);
