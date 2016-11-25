@@ -1,13 +1,30 @@
 <ng-include src="'app/components/partials/views/_nav_bar.html'" onload="" autoscroll=""></ng-include>
 <div class="container" ng-controller="FavoriteCtrl">
   <div class="row">
-    <div class="col-xs-8 col-sm-8 col-md-8">
-      <h3>My Favorite Video</h3>
-      <p>{{result}}</p>
-    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-xs-offet-3 col-sm-offset-3 col-md-offset-3">
+      <h3>My Liked Video</h3>
+      <div class="panel panel-info" ng-repeat="video in videos | orderBy: 'createAt' : true">
+        <div class="panel-heading">
+          <a href="#/viewVideo/{{video.videoId}}">{{video.videoName}}</a>
+        </div>
+        <div class="panel-body" style="padding:0px;">
+          <iframe width="100%" height="300" ng-src="{{video.videoUrl | trusted}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="panel-footer">
+          <div class="glyphicon glyphicon-thumbs-up">{{video.numOfLike}}</div> 
+          <div class="glyphicon glyphicon-eye-open">{{video.numberOfView}}</div> 
+          <div class="glyphicon glyphicon-comment">{{video.numOfComment}}</div> 
+          <div class="glyphicon glyphicon-calendar">{{video.createAt}}</div>
+          <div style="float: right;">
+            Created by: 
+            <a href="#/user/{{video.creater.userId}}">
+              {{video.creater.fullName}}
+            </a>
+          </div>
+        </div>
+      </div>
 
-    <div class="col-xs-4 col-sm-4 col-md-4">
-      <h3>Hot Video</h3>
+
     </div>
   </div>
 </div>
