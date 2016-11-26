@@ -8,6 +8,6 @@ angular.module('beertube.profile').service('profile', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.put("http://videoservice-dinhphan.rhcloud.com/users/update", user, config);
+      return $http.put("https://videoservice-dinhphan.rhcloud.com/users/update", user, config);
     };
   }]);

@@ -6,6 +6,6 @@ angular.module('beertube.register').service('register', ['$http',
       var config = {
         headers: {'Content-Type': 'application/json'}
       };
-      return $http.post('http://videoservice-dinhphan.rhcloud.com/users', user, config);
+      return $http.post('https://videoservice-dinhphan.rhcloud.com/users', user, config);
     }
   }]);

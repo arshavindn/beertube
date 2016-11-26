@@ -6,7 +6,7 @@ angular.module('beertube.videoUpdate').service('videoUpdate', ['$http', '$cookie
       var config = {
         headers: {'Content-Type': 'application/json'}
       };
-      return $http.get('http://videoservice-dinhphan.rhcloud.com/videos/'+video_id, config);
+      return $http.get('https://videoservice-dinhphan.rhcloud.com/videos/'+video_id, config);
     };
 
     this.updateVideo = function(video, video_id) {
@@ -16,7 +16,7 @@ angular.module('beertube.videoUpdate').service('videoUpdate', ['$http', '$cookie
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.put('http://videoservice-dinhphan.rhcloud.com/videos/'+video_id, video, config);
+      return $http.put('https://videoservice-dinhphan.rhcloud.com/videos/'+video_id, video, config);
     };
   }
 ]);

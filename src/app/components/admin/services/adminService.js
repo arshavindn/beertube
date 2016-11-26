@@ -6,14 +6,14 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
       var config = {
         headers: {'Content-Type': 'application/json'}
       };
-      return $http.get('http://videoservice-dinhphan.rhcloud.com/users', config);
+      return $http.get('https://videoservice-dinhphan.rhcloud.com/users', config);
     };
 
     this.getUserById = function(user_id) {
       var config = {
         headers: {'Content-Type': 'application/json'}
       };
-      return $http.get('http://videoservice-dinhphan.rhcloud.com/users/'+user_id, config);
+      return $http.get('https://videoservice-dinhphan.rhcloud.com/users/'+user_id, config);
     };
 
     this.setRole = function(user_id, role_name) {
@@ -22,7 +22,7 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.put('http://videoservice-dinhphan.rhcloud.com/users/assignRole/'+user_id+'/'+role_name, config);
+      return $http.put('https://videoservice-dinhphan.rhcloud.com/users/assignRole/'+user_id+'/'+role_name, config);
     };
 
     this.removeRole = function(user_id, role_name) {
@@ -31,14 +31,14 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.put('http://videoservice-dinhphan.rhcloud.com/users/removeRole/'+user_id+'/'+role_name, config);
+      return $http.put('https://videoservice-dinhphan.rhcloud.com/users/removeRole/'+user_id+'/'+role_name, config);
     };
 
     this.getAllCategory = function() {
       var config = {
         headers: {'Content-Type': 'application/json'}
       };
-      return $http.get('http://videoservice-dinhphan.rhcloud.com/categories', config);
+      return $http.get('https://videoservice-dinhphan.rhcloud.com/categories', config);
     };
 
     this.updateCategory = function(category_id, category) {
@@ -47,7 +47,7 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.put('http://videoservice-dinhphan.rhcloud.com/categories/'+category_id, category, config);
+      return $http.put('https://videoservice-dinhphan.rhcloud.com/categories/'+category_id, category, config);
     };
 
     this.createCategory = function(category) {
@@ -56,7 +56,7 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.post('http://videoservice-dinhphan.rhcloud.com/categories', category, config);
+      return $http.post('https://videoservice-dinhphan.rhcloud.com/categories', category, config);
     };
 
     this.deleteCategory = function(category_id) {
@@ -65,14 +65,14 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.delete('http://videoservice-dinhphan.rhcloud.com/categories/'+ category_id, config);
+      return $http.delete('https://videoservice-dinhphan.rhcloud.com/categories/'+ category_id, config);
     };
 
     this.getAllVideos = function() {
       var config = {
         headers: {'Content-Type': 'application/json'}
       };
-      return $http.get('http://videoservice-dinhphan.rhcloud.com/videos', config);
+      return $http.get('https://videoservice-dinhphan.rhcloud.com/videos', config);
     };
 
     this.updateVideo = function(video, video_id) {
@@ -81,7 +81,7 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.put('http://videoservice-dinhphan.rhcloud.com/videos/'+video_id, video, config);
+      return $http.put('https://videoservice-dinhphan.rhcloud.com/videos/'+video_id, video, config);
     }
   }
 ]);

@@ -6,7 +6,7 @@ angular.module('beertube.favorite').service('favorite', ['$http',
       var config = {
         headers: {'Content-Type': 'application/json'}
       };
-      return $http.get('http://videoservice-dinhphan.rhcloud.com/users/getAllVideoUserLiked/'+user_id, config);
+      return $http.get('https://videoservice-dinhphan.rhcloud.com/users/getAllVideoUserLiked/'+user_id, config);
     };
   }
 ]);

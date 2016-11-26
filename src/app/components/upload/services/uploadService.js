@@ -8,14 +8,14 @@ angular.module('beertube.upload').service('upload', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.post('http://videoservice-dinhphan.rhcloud.com/videos', video, config);
+      return $http.post('https://videoservice-dinhphan.rhcloud.com/videos', video, config);
   	};
 
   	this.getAllCategories = function() {
   	  var config = {
   	    headers: {'Content-Type': 'application/json'}
   	  };
-  	  return $http.get('http://videoservice-dinhphan.rhcloud.com/categories', config);
+  	  return $http.get('https://videoservice-dinhphan.rhcloud.com/categories', config);
   	};
   }
 ]);

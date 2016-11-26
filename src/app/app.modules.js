@@ -34,5 +34,5 @@ angular.module('beertube').constant('youtubeAPI', {
   PART: ['contentDetails', 'statistics']
 });
 angular.module('beertube').constant('beertubeAPI', {
-  URL: 'http://videoservice-dinhphan.rhcloud.com'
+  URL: 'https://videoservice-dinhphan.rhcloud.com'
 });

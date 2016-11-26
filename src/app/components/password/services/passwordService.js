@@ -8,7 +8,7 @@ angular.module('beertube.password').service('password', ['$http', '$cookies',
         headers: {'Content-Type': 'application/json',
                   'Authorization': token}
       };
-      return $http.put('http://videoservice-dinhphan.rhcloud.com/users/changePassword', password, config);
+      return $http.put('https://videoservice-dinhphan.rhcloud.com/users/changePassword', password, config);
     }
   }
 ]);
