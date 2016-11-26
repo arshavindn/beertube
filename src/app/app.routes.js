@@ -48,6 +48,10 @@ angular.module('beertube')
       .when('/admin/categories', {
         templateUrl: 'app/components/admin/views/categoryManager.html',
         controller: 'CategoryManagerCtrl'
+      })
+      .when('/admin/videos', {
+        templateUrl: 'app/components/admin/views/videoManager.html',
+        controller: 'VideoManagerCtrl'
       });
   }])
   .config( function ($httpProvider) {

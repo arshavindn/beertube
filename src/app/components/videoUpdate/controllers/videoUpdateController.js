@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('beertube.videoUpdate').controller('VideoUpdateCtrl', ['$scope', 'videoUpdate', '$routeParams', 'upload',
-  function($scope, videoUpdate, $routeParams, upload) {
+angular.module('beertube.videoUpdate').controller('VideoUpdateCtrl', ['$scope', 'videoUpdate', '$routeParams', 'upload', '$window',
+  function($scope, videoUpdate, $routeParams, upload, $window) {
   	// Default value for some variable
   	$scope.fVideo = true;
     $scope.sVideo = true;
@@ -42,6 +42,7 @@ angular.module('beertube.videoUpdate').controller('VideoUpdateCtrl', ['$scope', 
       console.log($scope.video);
       videoUpdate.updateVideo($scope.video, $routeParams.videoId).then(function(response){
         $scope.sVideo = false;
+        $window.location.href = '#/watch/'+$routeParams.videoId;
       }, function(response){
       	console.log(response);
         $scope.fVideo = false;
