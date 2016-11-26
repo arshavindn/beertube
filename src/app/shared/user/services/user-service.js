@@ -16,7 +16,7 @@ angular.module('beertube.user').service('UserService', function($q, $http, $log,
           return new Video(videoJSON);
         }));
       },
-      function () { defer.reject(response); }
+      function (response) { defer.reject(response); }
     );
   };
 

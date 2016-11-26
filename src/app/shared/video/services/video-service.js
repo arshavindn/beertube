@@ -21,7 +21,7 @@ angular.module('beertube.video').service('VideoService',
         params: {key: youtubeAPI.KEY, id: videoId, part: part}
       }).then(
         function (response) { defer.resolve(response.data.items[0]); },
-        function () { defer.reject(response); }
+        function (response) { defer.reject(response); }
       );
       return defer.promise;
     };
@@ -30,7 +30,7 @@ angular.module('beertube.video').service('VideoService',
       var defer = defer || $q.defer();
       $http.get(beertubeAPI.URL + '/videos').then(
         function (response) { defer.resolve(response.data.data); },
-        function () { defer.reject(response); }
+        function (response) { defer.reject(response); }
       );
       return defer.promise;
     };

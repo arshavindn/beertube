@@ -79,7 +79,7 @@ angular.module('beertube.video').factory('Video', function ($q, $http, beertubeA
           return new VideoComment(comment);
         }));
       },
-      function () { defer.reject(response); }
+      function (response) { defer.reject(response); }
     );
     return defer.promise;
   };
