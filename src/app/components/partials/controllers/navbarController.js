@@ -5,10 +5,11 @@ angular.module('beertube.navbar').controller('NavbarCtrl', ['$scope', '$cookies'
     $scope.adminUser = false;
     $scope.isUser = false;
     if ($cookies.get('user_info') != null) {
-      if (JSON.parse($cookies.get('user_info')).role[1] == 'ROLE_ADMIN') {
+      var role_arr = JSON.parse($cookies.get('user_info')).role;
+      if (role_arr.indexOf('ROLE_ADMIN') != -1) {
         $scope.adminUser = true;
       }
-      if (JSON.parse($cookies.get('user_info')).role[0] == 'ROLE_USER') {
+      if (role_arr.indexOf('ROLE_USER') != -1) {
         $scope.isUser = true;
         var userInfo = JSON.parse($cookies.get('user_info'));
         $scope.fullName = userInfo.fullName;

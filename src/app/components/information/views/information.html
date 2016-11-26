@@ -4,7 +4,7 @@
     <h3>My Videos</h3>
     <div class="panel panel-info" ng-repeat="video in videos | orderBy: 'createAt' : true">
       <div class="panel-heading">
-        <a href="#/viewVideo/{{video.videoId}}">{{video.videoName}}</a>
+        <a href="#/watch/{{video.videoId}}">{{video.videoName}}</a>
       </div>
       <div class="panel-body" style="padding:0px;">
         <iframe width="100%" height="380" ng-src="{{video.videoUrl | trusted}}" frameborder="0" allowfullscreen></iframe>
