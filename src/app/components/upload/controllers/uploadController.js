@@ -34,6 +34,7 @@ angular.module('beertube.upload').controller('UploadCtrl', ['$scope', 'upload', 
 
       $scope.uploadVideo = function () {
         upload.createVideo($scope.video).then(function(response){
+          console.log(response);
           $scope.sVideo = false;
         }, function(response){
           $scope.fVideo = false;
