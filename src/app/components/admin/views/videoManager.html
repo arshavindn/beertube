@@ -1,0 +1,54 @@
+<ng-include src="'app/components/partials/views/_nav_bar.html'" onload="" autoscroll=""></ng-include>
+<div class="container" ng-controller="VideoManagerCtrl">
+  <div class="row">
+    <h1>Videos Management</h1>
+    <div class="col-md-4">
+      <h3>Approved Videos</h3>
+      <div class="panel panel-success" ng-repeat="approvedVideo in approvedVideos">
+        <div class="panel-heading">
+          <a href="#/watch/{{approvedVideo.videoId}}">{{approvedVideo.videoName}}</a>
+        </div>
+        <div class="panel-body" style="padding:0px;">
+          <iframe width="100%" height="200" ng-src="{{approvedVideo.videoUrl | trusted}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="panel-footer">
+          <span>Post by: <a href="#/user/{{approvedVideo.creater.userId}}">{{approvedVideo.creater.fullName}} </a></span> 
+          <button class="btn btn-danger btn-xs" style="float: right;" ng-click="updateVideo(approvedVideo, 'reject', $index)">Reject</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <h3>Pending Videos</h3>
+      <div class="panel panel-info" ng-repeat="pendingVideo in pendingVideos">
+        <div class="panel-heading">
+          <a href="#/watch/{{pendingVideo.videoId}}">{{pendingVideo.videoName}}</a>
+        </div>
+        <div class="panel-body" style="padding:0px;">
+          <iframe width="100%" height="200" ng-src="{{pendingVideo.videoUrl | trusted}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="panel-footer">
+          <span>Post by: <a href="#/user/{{pendingVideo.creater.userId}}">{{pendingVideo.creater.fullName}} </a></span> 
+          <button class="btn btn-success btn-xs" style="float: right;" ng-click="updateVideo(pendingVideo, 'approved', $index)">Approved</button>
+          <button class="btn btn-danger btn-xs" style="float: right;" ng-click="updateVideo(pendingVideo, 'reject', $index)">Reject</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <h3>Reject Video</h3>
+      <div class="panel panel-danger" ng-repeat="rejectVideo in rejectVideos">
+        <div class="panel-heading">
+          <a href="#/watch/{{rejectVideo.videoId}}">{{rejectVideo.videoName}}</a>
+        </div>
+        <div class="panel-body" style="padding:0px;">
+          <iframe width="100%" height="200" ng-src="{{rejectVideo.videoUrl | trusted}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="panel-footer">
+          <span>Post by: <a href="#/user/{{rejectVideo.creater.userId}}">{{rejectVideo.creater.fullName}} </a></span> 
+          <button class="btn btn-success btn-xs" style="float: right;" ng-click="updateVideo(rejectVideo, 'approved', $index)">Approved</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

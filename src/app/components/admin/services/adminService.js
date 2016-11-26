@@ -67,5 +67,21 @@ angular.module('beertube.admin').service('admin', ['$http', '$cookies',
       };
       return $http.delete('http://videoservice-dinhphan.rhcloud.com/categories/'+ category_id, config);
     };
+
+    this.getAllVideos = function() {
+      var config = {
+        headers: {'Content-Type': 'application/json'}
+      };
+      return $http.get('http://videoservice-dinhphan.rhcloud.com/videos', config);
+    };
+
+    this.updateVideo = function(video, video_id) {
+      var token = $cookies.get('user_token');
+      var config = {
+        headers: {'Content-Type': 'application/json',
+                  'Authorization': token}
+      };
+      return $http.put('http://videoservice-dinhphan.rhcloud.com/videos/'+video_id, video, config);
+    }
   }
 ]);
