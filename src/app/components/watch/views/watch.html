@@ -1,4 +1,4 @@
-<ng-include src="'/partials/_nav_bar.html'"  onload=""  autoscroll=""></ng-include>
+<ng-include src="'app/components/partials/views/_nav_bar.html'" onload="" autoscroll=""></ng-include>
 <div>
   <div class="board youtube container-fluid">
     <div class="container">
@@ -97,7 +97,16 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="famous-videos">
+          <h3>Most Famous</h3>
+          <div class="video" ng-repeat="video in famousVideos">
+            <img ng-src="{{video.thumbnails['mqdefault']}}" alt="">
+            <h3><a href="/#/watch/video.id">{{video.title}}</a></h3>
+            <hr>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

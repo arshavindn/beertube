@@ -1,5 +1,5 @@
 angular.module('beertube.home').controller('HomeCtrl',
-  function($scope, $routeParams, Video) {
+  function($scope, $routeParams, Video, User) {
     $scope.page = parseInt($routeParams.page) || 1;
     $scope.nextPage = $scope.page + 1;
     $scope.pageFull = false;
@@ -16,6 +16,20 @@ angular.module('beertube.home').controller('HomeCtrl',
     Video.mostViewed(5).then(function(response) {
       $scope.mostViewedPosts = response;
     });
+    $scope.famousUsers = [];
+    User.all().then(function (users) {
+      users.map(function (user) {
+        user.followers().then(function (followers) {
+          user.followers = followers;
+        });
+        user.getUploadVideos().then(function (videos) {
+          user.uploadVideos = videos;
+        });
+      });
+      $scope.famousUsers = users.sort(function (user1, user2) {
+        return user1.followers.length <= user2.followers.length;
+      }).slice(0, 5);
+    });
     $scope.loadingPost = false;
     $scope.loadMore = function() {
       var currentNumberOfPosts = $scope.allPosts.length;
@@ -29,8 +43,6 @@ angular.module('beertube.home').controller('HomeCtrl',
         $scope.loadingPost = true;
         Video.all().then(function(response) {
           $scope.loadingPost = false;
-          console.log(currentNumberOfPosts);
-          console.log(numberOfNeededPosts);
           morePosts = response.slice(currentNumberOfPosts,
                                      currentNumberOfPosts + numberOfNeededPosts);
           $scope.allPosts = $scope.allPosts.concat(morePosts);

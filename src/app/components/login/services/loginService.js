@@ -6,7 +6,7 @@ angular.module('beertube.login').service('login', ['$http', '$cookies', function
       headers: {'Content-Type': 'application/json',
                 'Accept': '*/*'}
     };
-    return $http.post("https://videoservice-dinhphan.rhcloud.com:80/auth/**",
+    return $http.post("https://videoservice-dinhphan.rhcloud.com/auth",
                       user, config);
   };
 

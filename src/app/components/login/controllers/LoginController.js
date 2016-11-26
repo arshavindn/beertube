@@ -2,7 +2,7 @@
 
 angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$window', '$cookies', 'login', 'information',
   function ($scope, $window, $cookies, login, information) {
-    if ($cookies.get('user_token') == null) {
+    if ($cookies.get('user_token') === null || $cookies.get('user_token') === undefined) {
       $scope.user = {
           email: '',
           password: ''

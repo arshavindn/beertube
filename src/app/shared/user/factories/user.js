@@ -8,13 +8,39 @@ angular.module('beertube.user').factory('User', function ($q, $http, beertubeAPI
     this.token = null;
   }
 
-  User.prototype.uploadVideos = function() {
+  User.all = function () {
     var defer = defer || $q.defer();
-    $http.get(beertubeAPI.URL + '/users/getAllVideoUserUploaded' + this.id).then(
+    $http.get(beertubeAPI.URL + '/users').then(
+      function (response) {
+        var users = response.data.data;
+        defer.resolve(users.map(function(userJSON) {
+          return new User(userJSON);
+        }));
+      },
+      function (response) { defer.reject(response); }
+    );
+    return defer.promise;
+  };
+
+  User.prototype.getUploadVideos = function() {
+    var defer = defer || $q.defer();
+    $http.get(beertubeAPI.URL + '/users/getAllVideoUserUploaded/' + this.id).then(
       function (response) {
         var videos = response.data.data;
-        defer.resolve(videos.map(function(videoJSON) {
-          return new Video(videoJSON);
+        defer.resolve(videos);
+      },
+      function (response) { defer.reject(response); }
+    );
+    return defer.promise;
+  };
+
+  User.prototype.followers = function () {
+    var defer = defer || $q.defer();
+    $http.get(beertubeAPI.URL + '/users/getAllFollower/' + this.id).then(
+      function (response) {
+        var users = response.data.data;
+        defer.resolve(users.map(function(userJSON) {
+          return new User(userJSON);
         }));
       },
       function (response) { defer.reject(response); }

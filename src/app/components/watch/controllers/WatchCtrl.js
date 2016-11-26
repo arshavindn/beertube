@@ -95,6 +95,10 @@ angular.module('beertube.watch').controller('WatchCtrl',
       });
 
       $scope.commentPostContent = '';
+
+      Video.mostViewed(7).then(function (videos) {
+        $scope.famousVideos = videos;
+      });
     }
 
     function loadIframe() {
