@@ -1,11 +1,11 @@
 angular.module('beertube.watch').controller('WatchCtrl',
-  function ($scope, $routeParams, $window, $location, $http, $cookies, YoutubeService, Video, User, VideoComment) {
+  function ($scope, $routeParams, $window, $location, $http, $cookies, YoutubeService, WatchService, Video, User, VideoComment) {
 
     init();
 
     function init() {
       var userData = $cookies.get('user_info');
-      console.log(userData);
+      $scope.userPlaylists = [];
       if (userData !== null && userData !== undefined) {
         $scope.currentUser = new User(JSON.parse(userData));
         $scope.currentUser.token = $cookies.get('user_token');
@@ -26,6 +26,30 @@ angular.module('beertube.watch').controller('WatchCtrl',
               alert("Can't post comment. Please try again!");
           });
         };
+        $scope.currentUser.playlists().then(function (playlists) {
+          $scope.userPlaylists = playlists;
+          $scope.userPlaylists.forEach(function(pl) {
+            WatchService.getVideosOfPlaylist(pl.playListId).then(function(videos) {
+              pl.videos = videos.map(function(video) {return video.videoId;});
+            });
+          });
+          $scope.addToPlaylist = function (playlist) {
+            if (playlist.videos.indexOf($scope.video.id) < 0) {
+              WatchService.addVideoToPlaylistOfUser(playlist.playListId, $scope.video.id, $scope.currentUser.token).then(function(response) {
+                playlist.videos.push($scope.video.id);
+              }).catch(function (response) {
+                alert('An error occured. Please try again later!');
+              });
+            }
+            else {
+              WatchService.removeVideoFromPlaylistOfUser(playlist.playListId, $scope.video.id, $scope.currentUser.token).then(function(response) {
+                playlist.videos = _.without(playlist.videos, $scope.video.id);
+              }).catch(function (response) {
+                alert('An error occured. Please try again later!');
+              });
+            }
+          };
+        });
       }
       else {
         $scope.currentUser = null;
@@ -41,6 +65,7 @@ angular.module('beertube.watch').controller('WatchCtrl',
         $scope.youtube.videoId = $scope.video.videoId;
         loadIframe();
         YoutubeService.loadPlayer();
+
         $scope.comments = [];
         getComments();
         $scope.loadingComment = false;
@@ -99,7 +124,6 @@ angular.module('beertube.watch').controller('WatchCtrl',
     };
 
     $scope.like = function () {
-      console.log('adu');
       if ($scope.checkLike === true) {
         $scope.currentUser.unlikeAVideo($routeParams.id).then(function(response){
           $scope.checkLike = false;
@@ -110,10 +134,6 @@ angular.module('beertube.watch').controller('WatchCtrl',
           $scope.checkLike = true;
         });
       }
-    };
-
-    $scope.openAddPlaylist = function() {
-
     };
 
     scrollToCurrentVideoInPlaylist = function () {

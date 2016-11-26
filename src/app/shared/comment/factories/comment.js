@@ -11,7 +11,7 @@ angular.module('beertube.comment').factory('VideoComment', function($q, $http, b
   };
 
   VideoComment.create = function (token, videoId, content) {
-    var defer = $q.defer();
+    var defer = defer || $q.defer();
     $http.post(beertubeAPI.URL + '/videos/comment/' + videoId, {content: content}, {Authorization: token}).then(
       function (response) { defer.resolve(new VideoComment(response.data.data)); },
       function (response) { defer.reject(response); }

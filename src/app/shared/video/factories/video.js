@@ -70,7 +70,7 @@ angular.module('beertube.video').factory('Video', function ($q, $http, beertubeA
   };
 
   Video.prototype.comments = function () {
-    var defer = $q.defer();
+    var defer = defer || $q.defer();
     $http.get(beertubeAPI.URL + '/videos/getAllCommentByVideoId/' + this.id).then(
       function (response) {
         var comments = response.data.data;

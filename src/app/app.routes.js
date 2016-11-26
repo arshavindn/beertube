@@ -40,6 +40,14 @@ angular.module('beertube')
       .when('/upload', {
         templateUrl: 'app/components/upload/views/upload.html',
         controller: 'UploadCtrl'
+      })
+      .when('/admin/users', {
+        templateUrl: 'app/components/admin/views/userManager.html',
+        controller: 'UserManagerCtrl'
+      })
+      .when('/admin/categories', {
+        templateUrl: 'app/components/admin/views/categoryManager.html',
+        controller: 'CategoryManagerCtrl'
       });
   }])
   .config( function ($httpProvider) {

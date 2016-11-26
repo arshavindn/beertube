@@ -2,26 +2,30 @@
 
 angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$window', '$cookies', 'login', 'information',
   function ($scope, $window, $cookies, login, information) {
-    $scope.user = {
-        email: '',
-        password: ''
-    };
-    $scope.failLogin = true;
-    $scope.login = function () {
-      login.loginUser($scope.user).then(function (response) {
-        var data = response.data;
-        $cookies.put('user_token', data.token);
+    if ($cookies.get('user_token') == null) {
+      $scope.user = {
+          email: '',
+          password: ''
+      };
+      $scope.failLogin = true;
+      $scope.login = function () {
+        login.loginUser($scope.user).then(function (response) {
+          var data = response.data;
+          $cookies.put('user_token', data.token);
 
-        login.getUserInfo().then(function (response) {
-          var userInfo = JSON.stringify(response.data);
-          $cookies.put('user_info', userInfo);
-          $window.history.back();
+          login.getUserInfo().then(function (response) {
+            var userInfo = JSON.stringify(response.data);
+            $cookies.put('user_info', userInfo);
+            $window.history.back();
+          }, function (response) {
+            // Do nothing
+          });
         }, function (response) {
-          // Do nothing
+          $scope.failLogin = false;
+          $scope.user.password = '';
         });
-      }, function (response) {
-        $scope.failLogin = false;
-        $scope.user.password = '';
-      });
-    };
+      };
+    } else {
+      $window.location.href = '#/';
+    }
   }]);

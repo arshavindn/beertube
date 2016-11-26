@@ -25,25 +25,32 @@
             <input type="text" class="form-control" placeholder="Search">
           </div>
         </form>
-        
+
         <!-- When user not login -->
-        <li ng-show="userStatus !=='login'">
+        <li ng-show="!isUser">
           <a href="#/register">
             <span class="glyphicon glyphicon-pencil"></span> Register
           </a>
         </li>
-        <li ng-show="userStatus !== 'login'">
+        <li ng-show="!isUser">
           <a href="#/login">
             <span class="glyphicon glyphicon-log-in"></span> Login
           </a>
         </li>
         <!-- When user login -->
-        <li ng-show="userStatus === 'login'">
-          <a href="#/upload">
+        <li class="dropdown" ng-show="adminUser">
+          <a class="dropdown-toggle" style="cursor: pointer;"> <span class="glyphicon glyphicon-cog"></span> Manager <span class="caret"></span></a>
+          <div class="dropdown-content">
+            <a href="#/admin/users">Users Management</a>
+            <a href="#/admin/categories">Categories Management</a>
+          </div>
+        </li>
+        <li ng-show="isUser">
+          <a class="upload-video" href="#/upload">
             <button class="btn btn-primary btn-sm">Upload Video</button>
           </a>
         </li>
-        <li class="dropdown" ng-show="userStatus === 'login'">
+        <li class="dropdown" ng-show="isUser">
           <a class="dropdown-toggle" href="#/user/{{userId}}"> <span class="glyphicon glyphicon-user"></span> {{fullName}} <span class="caret"></span></a>
           <div class="dropdown-content">
             <a href="#/user/{{userId}}/favorite">My Favorite Video</a>

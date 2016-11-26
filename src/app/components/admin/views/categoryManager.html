@@ -1,0 +1,48 @@
+<ng-include src="'app/components/partials/views/_nav_bar.html'" onload="" autoscroll=""></ng-include>
+<div class="container" ng-controller="CategoryManagerCtrl">
+  <div class="row">
+    <h1 style="text-align: center;">Categories Management</h1>
+    <div class="alert alert-{{alert_status}}" ng-show="alert_show">
+      {{alert_content}}
+    </div>
+    <div class="col-md-4">
+      <form role="form" name="categoryForm">
+        <h3>Create new Category</h3>
+        <div class="form-group">
+          <label>Category's Name:<span class="required">*</span></label>
+          <input type="text" class="form-control" name="categoryName" ng-model="newCategory.categoryName" required>
+        </div>
+        <div class="form-group">
+          <label>Description:<span class="required">*</span></label>
+          <input type="text" class="form-control" name="description" ng-model="newCategory.description">
+        </div>
+        <button ng-disabled="categoryForm.$pristine || categoryForm.$dirty && categoryForm.$invalid " class="btn btn-success" ng-click="createCategory()">Create</button>
+      </form>
+    </div>
+    <div class="col-md-8">
+      <h3>All categories</h3>
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name of Category</th>
+          <th>Description</th>
+        </tr>
+        <tr ng-repeat="category in categories">
+          <td>{{category.categoryId}}</td>
+          <td>
+            <input type="text" class="form-control" ng-model="category.categoryName">
+          </td>
+          <td>
+            <input type="text" class="form-control" ng-model="category.description">
+          </td>
+          <td>
+            <button class="btn btn-primary" ng-click="updateCategory(category.categoryId, category)">Save</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" ng-click="deleteCategory(category.categoryId, category)">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

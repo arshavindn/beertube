@@ -8,7 +8,7 @@ angular.module('beertube.user').service('UserService', function($q, $http, $log,
       headers: {'Content-Type': 'application/json',
                 'Accept': '*/*'}
     };
-    var defer = $q.defer();
+    var defer = defer || $q.defer();
     $http.post(beertubeAPI.URL + '/auth', {email: email, password: password}, config).then(
       function (response) {
         var videos = response.data.data;

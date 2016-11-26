@@ -15,7 +15,7 @@ angular.module('beertube.video').service('VideoService',
     };
 
     service.videoYoutubeData = function (videoId) {
-      var defer = $q.defer();
+      var defer = defer || $q.defer();
       var part = youtubeAPI.PART.join(',');
       $http.get(youtubeAPI.URL, {
         params: {key: youtubeAPI.KEY, id: videoId, part: part}
@@ -27,7 +27,7 @@ angular.module('beertube.video').service('VideoService',
     };
 
     service.all = function() {
-      var defer = $q.defer();
+      var defer = defer || $q.defer();
       $http.get(beertubeAPI.URL + '/videos').then(
         function (response) { defer.resolve(response.data.data); },
         function () { defer.reject(response); }

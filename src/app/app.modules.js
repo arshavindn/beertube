@@ -24,6 +24,7 @@ angular.module('beertube', [
   'beertube.upload',
   'beertube.video',
   'beertube.videoUpdate',
+  'beertube.admin',
   'videoFilter',
 ]);
 
