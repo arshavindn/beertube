@@ -6,6 +6,11 @@
     "node": "4.4.7",
     "npm": "3.10.7"
   },
+  "dependencies": {
+    "bower": "*",
+    "express": "^4.14.0",
+    "gzippo": "^0.2.0"
+  },
   "scripts": {
     "postinstall": "bower install",
     "build:css": "node-sass --output-style compressed -o src/assets/stylesheets/ src/assets/stylesheets/scss/",
@@ -33,11 +38,6 @@
     "node-sass": "^3.10.1",
     "onchange": "^3.0.2",
     "parallelshell": "^2.0.0"
-  },
-  "dependencies": {
-    "bower": "*",
-    "express": "^4.14.0",
-    "gzippo": "^0.2.0"
   },
   "cacheDirectories": ["node_modules"]
 }
