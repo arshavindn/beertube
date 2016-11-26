@@ -22,11 +22,7 @@ angular.module('beertube.videoUpdate').controller('VideoUpdateCtrl', ['$scope', 
     // Load video infomation
     videoUpdate.getVideoById($routeParams.videoId).then(function(response){
       var resVideo = response.data.data;
-      $scope.video = {
-        videoName: resVideo.videoName,
-        category: {categoryId: resVideo.category.categoryId},
-        description: resVideo.description
-      };
+      $scope.video = resVideo;
       $scope.videoLink = 'https://www.youtube.com/watch?v=' + resVideo.videoCode;
       $scope.viewDemo();
     }, function(response){
@@ -43,7 +39,7 @@ angular.module('beertube.videoUpdate').controller('VideoUpdateCtrl', ['$scope', 
 
     // Update Video
     $scope.updateVideo = function () {
-      console.log($routeParams.videoId);
+      console.log($scope.video);
       videoUpdate.updateVideo($scope.video, $routeParams.videoId).then(function(response){
         $scope.sVideo = false;
       }, function(response){

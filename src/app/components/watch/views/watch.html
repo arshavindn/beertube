@@ -12,7 +12,7 @@
           </button>
         </div>
         <div class="btn-container clearfix">
-          <button type="button" class="btn btn-default" aria-label="Left Align">
+          <button type="button" class="btn btn-default" ng-click="like()" ng-class="{'active': checkLike}" aria-label="Left Align">
             <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
           </button>
           <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -38,7 +38,7 @@
                 <li role="menuitem"><a href="#">Another action</a></li>
                 <li role="menuitem"><a href="#">Something else here</a></li>
                 <li class="divider"></li>
-                <li role="menuitem"><a href="#">Separated link</a></li>
+                <li role="menuitem"><a href="#" ng-click="openAddPlaylist()">Add playlist</a></li>
               </ul>
             </div>
           </div>
@@ -66,19 +66,25 @@
         <div class="video-info">
           <h1 class="title">{{video.title}}</h1>
           <span class="duration">{{video.duration}}</span>
-          <p>{{video.description}}</p>
+          <div class="">
+            <span class="view-count statistic">{{video.view}} views</span><span> - </span><span class="comment-count statistic">{{video.numberOfComment}} comments</span>
+          </div>
+          <p class="description">{{video.description}}</p>
         </div>
-        <div class="post-comment" ng-if="currentUser !== null">
+        <div class="comment-box" ng-if="currentUser !== null">
           <div class="row">
             <div class="avatar col-md-2">
               <img ng-src="{{currentUser.avatarUrl}}" alt="">
             </div>
             <div class="comment-container col-md-10">
-              <textarea rows="3" cols="70">{{commentPostContent}}</textarea>
+              <textarea rows="3" placeholder="Write comments..." ng-model="$parent.commentPostContent"></textarea>
+              <div class="action-badge">
+                <button class="btn btn-primary" ng-disabled="$parent.commentPostContent === ''" ng-click="currentUserPostComment()" type="button" name="button">Post</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="comments">
+        <div class="comments" infinite-scroll='commentLoadMore()' infinite-scroll-distance='1'>
           <div ng-repeat="comment in comments">
             <div class="row">
               <div class="avatar col-md-2">

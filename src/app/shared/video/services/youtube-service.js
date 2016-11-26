@@ -78,4 +78,8 @@ angular.module('beertube.video').service('YoutubeService',
   this.getYoutube = function () {
     return youtube;
   };
+
+  this.getUpcoming = function () {
+    return upcoming;
+  };
 }]);

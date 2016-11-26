@@ -8,6 +8,15 @@
       display: none;
     }
   }
+  .btn-container {
+    padding-top: 15px;
+    .active {
+      background-color: rgb(73, 115, 158);
+      .glyphicon-arrow-up {
+        color: white;
+      }
+    }
+  }
 }
 
 .responsivewrapper {
@@ -69,10 +78,6 @@
   }
 }
 
-.btn-container {
-  padding-top: 15px;
-}
-
 .playlist {
   // height: 480px;
   .list {
@@ -93,22 +98,53 @@
     display: inline;
   }
   .duration {
-    color: rgb(59, 59, 59)
+    font-size: 18px;
+    padding-left: 10px;
+    color: rgb(59, 59, 59);
+  }
+  .statistic {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8e8e8e;
+  }
+  .description {
+    font-size: 18px;
   }
 }
 
-.post-comment,
+.comment-box,
 .comments {
   .row {
     margin: 10px 0;
   }
   .col-md-2 {
-    width: 12%;
+    width: 10%;
+    padding: 0 !important;
     img {
       margin-left: 0 !important;
     }
   }
   .comment-container {
     padding: 0 !important;
+  }
+}
+
+.comment-box {
+  textarea {
+    resize: vertical;;
+    width: 100%;
+    display: block;
+    padding: 5px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .action-badge {
+    padding: 5px;
+    border: 1px solid rgb(169, 169, 169);;
+    border-top: none;
+    button {
+      padding: 4px 8px;
+    }
   }
 }

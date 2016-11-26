@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$route', '$window', '$cookies', 'login', 'User',
-  function ($scope, $route, $window, $cookies, login, User) {
+angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$window', '$cookies', 'login', 'information',
+  function ($scope, $window, $cookies, login, information) {
     $scope.user = {
         email: '',
         password: ''
@@ -12,8 +12,7 @@ angular.module('beertube.login').controller('LoginCtrl', ['$scope', '$route', '$
         var data = response.data;
         $cookies.put('user_token', data.token);
 
-        User.getUserInfo().then(function (response) {
-          console.log(response.data);
+        login.getUserInfo().then(function (response) {
           var userInfo = JSON.stringify(response.data);
           $cookies.put('user_info', userInfo);
           $window.history.back();

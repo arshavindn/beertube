@@ -1,11 +1,35 @@
 angular.module('beertube.watch').controller('WatchCtrl',
-  function ($scope, $routeParams, $window, $location, $http, $cookies, YoutubeService, Video) {
+  function ($scope, $routeParams, $window, $location, $http, $cookies, YoutubeService, Video, User, VideoComment) {
 
     init();
 
     function init() {
       var userData = $cookies.get('user_info');
-      $scope.currentUser = userData === null ? new User(JSON.parse(userData)) : null;
+      console.log(userData);
+      if (userData !== null && userData !== undefined) {
+        $scope.currentUser = new User(JSON.parse(userData));
+        $scope.currentUser.token = $cookies.get('user_token');
+        $scope.currentUser.likeVideoIds().then(function(videoIds) {
+          if (videoIds.indexOf(parseInt($routeParams.id)) >= 0) {
+            $scope.checkLike = true;
+          }
+          else {
+            $scope.checkLike = false;
+          }
+        });
+        $scope.currentUserPostComment = function () {
+          VideoComment.create($scope.currentUser.token, $scope.video.id, $scope.commentPostContent)
+            .then(function(comment) {
+              $scope.comments.unshift(comment);
+              $scope.commentPostContent = '';
+            }).catch(function () {
+              alert("Can't post comment. Please try again!");
+          });
+        };
+      }
+      else {
+        $scope.currentUser = null;
+      }
 
       $scope.youtube  = YoutubeService.getYoutube();
       $scope.video = null;
@@ -19,20 +43,34 @@ angular.module('beertube.watch').controller('WatchCtrl',
         YoutubeService.loadPlayer();
         $scope.comments = [];
         getComments();
+        $scope.loadingComment = false;
+        $scope.commentLoadMore = function() {
+          if ($scope.video.numberOfComment > $scope.comments.length ||
+              ($scope.video.numberOfComment === 0 && $scope.video.numberOfComment < $scope.comments.length)) {
+            if (!$scope.loadingComment) {
+              $scope.loadingComment = true;
+              console.log('loading comments...');
+              $scope.video.comments().then(function(comments) {
+                $scope.loadingComment = false;
+                var moreComments = comments.slice($scope.comments.length, $scope.comments.length + 5);
+                $scope.comments = $scope.comments.concat(moreComments);
+              });
+            }
+          }
+        };
       });
 
       $scope.playlist = [];
       Video.limitedPlaylistIncludes($routeParams.id).then(function (playlist) {
         $scope.playlist = playlist;
+        angular.element(document).ready(function() {
+          scrollToCurrentVideoInPlaylist();
+          playlistScrollHandle();
+        });
       });
 
       $scope.commentPostContent = '';
     }
-
-    angular.element(document).ready(function() {
-      scrollToCurrentVideoInPlaylist();
-      playlistScrollHandle();
-    });
 
     function loadIframe() {
       var tag = document.createElement('script');
@@ -51,8 +89,31 @@ angular.module('beertube.watch').controller('WatchCtrl',
 
     getComments = function() {
       $scope.video.comments().then(function(comments) {
-        $scope.comments = comments;
+        $scope.video.numberOfComment = comments.length;
+        $scope.comments = comments.slice(0, 5);
       });
+    };
+
+    $scope.limitPlaylistLoadUp = function () {
+      var firstId = $scope.playlist[0].id;
+    };
+
+    $scope.like = function () {
+      console.log('adu');
+      if ($scope.checkLike === true) {
+        $scope.currentUser.unlikeAVideo($routeParams.id).then(function(response){
+          $scope.checkLike = false;
+        });
+      }
+      else {
+        $scope.currentUser.likeAVideo($routeParams.id).then(function(response){
+          $scope.checkLike = true;
+        });
+      }
+    };
+
+    $scope.openAddPlaylist = function() {
+
     };
 
     scrollToCurrentVideoInPlaylist = function () {
@@ -71,8 +132,6 @@ angular.module('beertube.watch').controller('WatchCtrl',
       });
     };
 
-
-$scope.commentPostContent = '';
     playlistScrollHandle = function () {
       $scrollablePlaylist = document.getElementsByClassName('list')[0];
       $scrollablePlaylist.addEventListener('mouseenter', function(e) {

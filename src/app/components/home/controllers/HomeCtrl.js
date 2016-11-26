@@ -13,21 +13,24 @@ angular.module('beertube.home').controller('HomeCtrl',
                                        startIndex + $scope.loadLimit);
     });
     $scope.mostViewedPosts = [];
-    Video.mostViewed().then(function(response) {
+    Video.mostViewed(5).then(function(response) {
       $scope.mostViewedPosts = response;
     });
+    $scope.loadingPost = false;
     $scope.loadMore = function() {
-      currentNumberOfPosts = $scope.allPosts.length;
-      if (currentNumberOfPosts > 0) {
-        totalLoadedPosts = ($scope.page - 1) * $scope.pageLimit + currentNumberOfPosts;
+      var currentNumberOfPosts = $scope.allPosts.length;
+      if (currentNumberOfPosts > 0 && !$scope.loadingPost) {
+        var totalLoadedPosts = ($scope.page - 1) * $scope.pageLimit + currentNumberOfPosts;
+        var numberOfNeededPosts = $scope.loadLimit;
         if (currentNumberOfPosts + $scope.loadLimit > $scope.pageLimit) {
           numberOfNeededPosts = $scope.pageLimit - currentNumberOfPosts;
           $scope.pageFull = true;
         }
-        else {
-          numberOfNeededPosts = $scope.loadLimit;
-        }
-        Video.all().then(function(response, currentNumberOfPosts, numberOfNeededPosts) {
+        $scope.loadingPost = true;
+        Video.all().then(function(response) {
+          $scope.loadingPost = false;
+          console.log(currentNumberOfPosts);
+          console.log(numberOfNeededPosts);
           morePosts = response.slice(currentNumberOfPosts,
                                      currentNumberOfPosts + numberOfNeededPosts);
           $scope.allPosts = $scope.allPosts.concat(morePosts);
