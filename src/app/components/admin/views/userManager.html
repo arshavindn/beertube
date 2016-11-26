@@ -1,0 +1,21 @@
+<ng-include src="'app/components/partials/views/_nav_bar.html'" onload="" autoscroll=""></ng-include>
+<div class="container" ng-controller="UserManagerCtrl">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>User Management</h3>
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>User Name</th>
+          <th>Email</th>
+        </tr>
+        <tr ng-repeat="user in users">
+          <td>{{user.userId}}</td>
+          <td>{{user.fullName}}</td>
+          <td>{{user.email}}</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
